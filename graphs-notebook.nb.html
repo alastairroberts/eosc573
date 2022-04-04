@@ -221,31 +221,61 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGdncGxvdDIpXG5saWJyYXJ5KHB1cnJyKVxubGlicmFyeShSQURhbmFseXNpcylcbmxpYnJhcnkodmVnYW4pXG5gYGAifQ== -->
 <pre class="r"><code>library(tidyverse)
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxu4pSA4pSAIEF0dGFjaGluZyBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDEuMy4xIOKUgOKUgFxu4pyTIGdncGxvdDIgMy4zLjUgICAgIOKckyBwdXJyciAgIDAuMy40XG7inJMgdGliYmxlICAzLjEuNiAgICAg4pyTIGRwbHlyICAgMS4wLjhcbuKckyB0aWR5ciAgIDEuMi4wICAgICDinJMgc3RyaW5nciAxLjQuMFxu4pyTIHJlYWRyICAgMi4xLjIgICAgIOKckyBmb3JjYXRzIDAuNS4xXG7ilIDilIAgQ29uZmxpY3RzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG54IGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbnggZHBseXI6OmxhZygpICAgIG1hc2tzIHN0YXRzOjpsYWcoKVxuIn0= -->
-<pre><code>Registered S3 methods overwritten by &#39;dbplyr&#39;:
-  method         from
-  print.tbl_lazy     
-  print.tbl_sql      
-── Attaching packages ────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──
-✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-✓ tibble  3.1.6     ✓ dplyr   1.0.8
-✓ tidyr   1.2.0     ✓ stringr 1.4.0
-✓ readr   2.1.2     ✓ forcats 0.5.1
-── Conflicts ───────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGdncGxvdDIpXG5gYGAifQ== -->
-<pre class="r"><code>library(tidyverse)
-library(ggplot2)</code></pre>
+library(ggplot2)
+library(purrr)
+library(RADanalysis)
+library(vegan)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>(Methods) Table: Key features (Methods) Image: Sample sites highlighted on map</p>
+<p>Abundance graphs Species Classes</p>
+<p>Relative composition stacked bar graphs Species Classes</p>
+<p>Size structure (Biovolume) =&gt; NBSS (normalised biomass size structure) as per paper: ___? Biovolume/m^3 (um<sup>3/m</sup>3)</p>
+<p>Biomass graphs Biomass between sites overall Biomass % composition stacked bars Biomass large (5+mm) vs med (2-5mm) vs small (0-2mm) between groups</p>
+<p>Diversity stuff Rank Abundance + quantitative comparisons for each site Shannon Div Index for each site Species eveness for each site</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0FidW5kYW5jZVxuXG5gYGAifQ== -->
+<pre class="r"><code>#Abundance
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyVjb21wb3NpdGlvblxuYGBgIn0= -->
+<pre class="r"><code>#%composition</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0Jpb3ZvbHVtZVxuYGBgIn0= -->
+<pre class="r"><code>#Biovolume</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0Jpb21hc3NcbmBgYCJ9 -->
+<pre class="r"><code>#Biomass</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0RpdmVyc2l0eSBncmFwaHNcblxuYGBgIn0= -->
+<pre class="r"><code>#Diversity graphs
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRU9TQzU3MyBkYXRhIGFuYWx5c2lzIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGdncGxvdDIpCmxpYnJhcnkocHVycnIpCmxpYnJhcnkoUkFEYW5hbHlzaXMpCmBgYAo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRU9TQzU3MyBkYXRhIGFuYWx5c2lzIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGdncGxvdDIpCmxpYnJhcnkocHVycnIpCmxpYnJhcnkoUkFEYW5hbHlzaXMpCmxpYnJhcnkodmVnYW4pCmBgYAoKKE1ldGhvZHMpIFRhYmxlOiBLZXkgZmVhdHVyZXMKKE1ldGhvZHMpIEltYWdlOiBTYW1wbGUgc2l0ZXMgaGlnaGxpZ2h0ZWQgb24gbWFwCgpBYnVuZGFuY2UgZ3JhcGhzCiAgU3BlY2llcwogIENsYXNzZXMKClJlbGF0aXZlIGNvbXBvc2l0aW9uIHN0YWNrZWQgYmFyIGdyYXBocwogIFNwZWNpZXMKICBDbGFzc2VzCgpTaXplIHN0cnVjdHVyZSAoQmlvdm9sdW1lKSA9PiBOQlNTIChub3JtYWxpc2VkIGJpb21hc3Mgc2l6ZSBzdHJ1Y3R1cmUpIGFzIHBlciBwYXBlcjogX19fPwogIEJpb3ZvbHVtZS9tXjMgKHVtXjMvbV4zKQogIApCaW9tYXNzIGdyYXBocwogIEJpb21hc3MgYmV0d2VlbiBzaXRlcyBvdmVyYWxsCiAgQmlvbWFzcyAlIGNvbXBvc2l0aW9uIHN0YWNrZWQgYmFycwogIEJpb21hc3MgbGFyZ2UgKDUrbW0pIHZzIG1lZCAoMi01bW0pIHZzIHNtYWxsICgwLTJtbSkgYmV0d2VlbiBncm91cHMKCkRpdmVyc2l0eSBzdHVmZgogIFJhbmsgQWJ1bmRhbmNlICsgcXVhbnRpdGF0aXZlIGNvbXBhcmlzb25zIGZvciBlYWNoIHNpdGUKICBTaGFubm9uIERpdiBJbmRleCBmb3IgZWFjaCBzaXRlCiAgU3BlY2llcyBldmVuZXNzIGZvciBlYWNoIHNpdGUKCmBgYHtyfQojQWJ1bmRhbmNlCgpgYGAKCmBgYHtyfQojJWNvbXBvc2l0aW9uCmBgYAoKYGBge3J9CiNCaW92b2x1bWUKYGBgCgpgYGB7cn0KI0Jpb21hc3MKYGBgCgpgYGB7cn0KI0RpdmVyc2l0eSBncmFwaHMKCmBgYAoKCg==</div>
 
 
 

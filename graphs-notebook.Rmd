@@ -9,4 +9,53 @@ library(tidyverse)
 library(ggplot2)
 library(purrr)
 library(RADanalysis)
+library(vegan)
 ```
+
+(Methods) Table: Key features
+(Methods) Image: Sample sites highlighted on map
+
+Abundance graphs
+  Species
+  Classes
+
+Relative composition stacked bar graphs
+  Species
+  Classes
+
+Size structure (Biovolume) => NBSS (normalised biomass size structure) as per paper: ___?
+  Biovolume/m^3 (um^3/m^3)
+  
+Biomass graphs
+  Biomass between sites overall
+  Biomass % composition stacked bars
+  Biomass large (5+mm) vs med (2-5mm) vs small (0-2mm) between groups
+
+Diversity stuff
+  Rank Abundance + quantitative comparisons for each site
+  Shannon Div Index for each site
+  Species eveness for each site
+
+```{r}
+#Abundance
+
+```
+
+```{r}
+#%composition
+```
+
+```{r}
+#Biovolume
+```
+
+```{r}
+#Biomass
+```
+
+```{r}
+#Diversity graphs
+
+```
+
+
