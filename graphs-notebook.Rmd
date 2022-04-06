@@ -37,24 +37,69 @@ Diversity stuff
   Species eveness for each site
 
 ```{r}
-#Abundance
+#Abundance and species comp
+densitiessites <- read.csv("~/Desktop/densitysites.csv", row.names = 1)
+speciespercent <- read.csv("~/Desktop/speciescomposition.csv", row.names = 1)
+compositiongroups <- read.csv("~/Desktop/compositiongorups.csv", row.names = 1)
+
 
 ```
 
-```{r}
-#%composition
-```
-
-```{r}
-#Biovolume
-```
 
 ```{r}
-#Biomass
+#Size histograms
+sizebins <- read.csv("~/Desktop/sizes.csv", row.names = 1)
+
+
 ```
+
+
+```{r}
+###Biomass
+biomasspercenttaxa <- read.csv("~/Desktop/biomass-percent.csv", row.names = 1)
+biomassvaluesgroup <- read.csv("~/Desktop/biomassvalues.csv", row.names = 1)
+biomasspercentgroups <- read.csv("~/Desktop/biomasspercentgroups.csv", row.names = 1)
+
+#d1data below
+d1counts <- read.csv("~/Desktop/d1counts.csv", row.names = 1)
+d1div <- diversity(d1counts)
+d1even <- d1div/(log(23))
+
+#d2databelow
+d2counts <- read.csv("~/Desktop/d2counts.csv", row.names = 1)
+d2div <- diversity(d2counts)
+d2even <- d2div/(log(19))
+
+#n1databelow
+n1counts <- read.csv("~/Desktop/n1counts.csv", row.names = 1)
+n1div <- diversity(n1counts)
+n1even <- n1div/(log(18))
+
+#srdatabelow
+srcounts <- read.csv("~/Desktop/srcounts.csv", row.names = 1)
+srdiv <- diversity(srcounts)
+sreven <- srdiv/(log(17))
+
+#make dataframe and rename columns
+
+a <- list(srdiv, n1div, d2div, d1div)
+b <- list(sreven, n1even, d2even, d1even)
+
+df <- tibble(a, b)
+colnames1 <- c("Shannon-Weaver Diversity Index", "Pielou's Species Evenness")
+rownames1 <- c("SR", "N1", "D2", "D1")
+colnames(df) <- colnames1
+rownames(df) <- rownames1
+
+
+
+
+```
+
 
 ```{r}
 #Diversity graphs
+
 
 ```
 

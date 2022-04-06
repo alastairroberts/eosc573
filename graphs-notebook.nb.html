@@ -238,17 +238,14 @@ library(vegan)</code></pre>
 <p>Diversity stuff Rank Abundance + quantitative comparisons for each site Shannon Div Index for each site Species eveness for each site</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0FidW5kYW5jZVxuXG5gYGAifQ== -->
-<pre class="r"><code>#Abundance
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm93bmFtZXMoY29tcG9zaXRpb25ncm91cHMpIDwtIHNhbXBbLDFdXG5cbmBgYCJ9 -->
+<pre class="r"><code>rownames(compositiongroups) &lt;- samp[,1]
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyVjb21wb3NpdGlvblxuYGBgIn0= -->
-<pre class="r"><code>#%composition</code></pre>
-<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoibm9uLXVuaXF1ZSB2YWx1ZSB3aGVuIHNldHRpbmcgJ3Jvdy5uYW1lcyc6IOKAmDDigJlFcnJvciBpbiBgLnJvd05hbWVzREY8LWAoeCwgdmFsdWUgPSB2YWx1ZSkgOiBcbiAgZHVwbGljYXRlICdyb3cubmFtZXMnIGFyZSBub3QgYWxsb3dlZFxuIn0= -->
+<pre><code>non-unique value when setting &#39;row.names&#39;: ‘0’Error in `.rowNamesDF&lt;-`(x, value = value) : 
+  duplicate &#39;row.names&#39; are not allowed</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -260,22 +257,29 @@ library(vegan)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0Jpb21hc3NcbmBgYCJ9 -->
-<pre class="r"><code>#Biomass</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm93bmFtZXMoZGYpIDwtIHJvd25hbWVzMVxuXG5gYGAifQ== -->
+<pre class="r"><code>rownames(df) &lt;- rownames1
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiU2V0dGluZyByb3cgbmFtZXMgb24gYSB0aWJibGUgaXMgZGVwcmVjYXRlZC5cbiJ9 -->
+<pre><code>Setting row names on a tibble is deprecated.</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0RpdmVyc2l0eSBncmFwaHNcblxuYGBgIn0= -->
-<pre class="r"><code>#Diversity graphs
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVmlldyhkZilgYGBcblxuYGBgIn0= -->
+<pre class="r"><code>View(df)```
 </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IGF0dGVtcHQgdG8gdXNlIHplcm8tbGVuZ3RoIHZhcmlhYmxlIG5hbWVcbiJ9 -->
+<pre><code>Error: attempt to use zero-length variable name</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRU9TQzU3MyBkYXRhIGFuYWx5c2lzIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGdncGxvdDIpCmxpYnJhcnkocHVycnIpCmxpYnJhcnkoUkFEYW5hbHlzaXMpCmxpYnJhcnkodmVnYW4pCmBgYAoKKE1ldGhvZHMpIFRhYmxlOiBLZXkgZmVhdHVyZXMKKE1ldGhvZHMpIEltYWdlOiBTYW1wbGUgc2l0ZXMgaGlnaGxpZ2h0ZWQgb24gbWFwCgpBYnVuZGFuY2UgZ3JhcGhzCiAgU3BlY2llcwogIENsYXNzZXMKClJlbGF0aXZlIGNvbXBvc2l0aW9uIHN0YWNrZWQgYmFyIGdyYXBocwogIFNwZWNpZXMKICBDbGFzc2VzCgpTaXplIHN0cnVjdHVyZSAoQmlvdm9sdW1lKSA9PiBOQlNTIChub3JtYWxpc2VkIGJpb21hc3Mgc2l6ZSBzdHJ1Y3R1cmUpIGFzIHBlciBwYXBlcjogX19fPwogIEJpb3ZvbHVtZS9tXjMgKHVtXjMvbV4zKQogIApCaW9tYXNzIGdyYXBocwogIEJpb21hc3MgYmV0d2VlbiBzaXRlcyBvdmVyYWxsCiAgQmlvbWFzcyAlIGNvbXBvc2l0aW9uIHN0YWNrZWQgYmFycwogIEJpb21hc3MgbGFyZ2UgKDUrbW0pIHZzIG1lZCAoMi01bW0pIHZzIHNtYWxsICgwLTJtbSkgYmV0d2VlbiBncm91cHMKCkRpdmVyc2l0eSBzdHVmZgogIFJhbmsgQWJ1bmRhbmNlICsgcXVhbnRpdGF0aXZlIGNvbXBhcmlzb25zIGZvciBlYWNoIHNpdGUKICBTaGFubm9uIERpdiBJbmRleCBmb3IgZWFjaCBzaXRlCiAgU3BlY2llcyBldmVuZXNzIGZvciBlYWNoIHNpdGUKCmBgYHtyfQojQWJ1bmRhbmNlCgpgYGAKCmBgYHtyfQojJWNvbXBvc2l0aW9uCmBgYAoKYGBge3J9CiNCaW92b2x1bWUKYGBgCgpgYGB7cn0KI0Jpb21hc3MKYGBgCgpgYGB7cn0KI0RpdmVyc2l0eSBncmFwaHMKCmBgYAoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRU9TQzU3MyBkYXRhIGFuYWx5c2lzIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGdncGxvdDIpCmxpYnJhcnkocHVycnIpCmxpYnJhcnkoUkFEYW5hbHlzaXMpCmxpYnJhcnkodmVnYW4pCmBgYAoKKE1ldGhvZHMpIFRhYmxlOiBLZXkgZmVhdHVyZXMKKE1ldGhvZHMpIEltYWdlOiBTYW1wbGUgc2l0ZXMgaGlnaGxpZ2h0ZWQgb24gbWFwCgpBYnVuZGFuY2UgZ3JhcGhzCiAgU3BlY2llcwogIENsYXNzZXMKClJlbGF0aXZlIGNvbXBvc2l0aW9uIHN0YWNrZWQgYmFyIGdyYXBocwogIFNwZWNpZXMKICBDbGFzc2VzCgpTaXplIHN0cnVjdHVyZSAoQmlvdm9sdW1lKSA9PiBOQlNTIChub3JtYWxpc2VkIGJpb21hc3Mgc2l6ZSBzdHJ1Y3R1cmUpIGFzIHBlciBwYXBlcjogX19fPwogIEJpb3ZvbHVtZS9tXjMgKHVtXjMvbV4zKQogIApCaW9tYXNzIGdyYXBocwogIEJpb21hc3MgYmV0d2VlbiBzaXRlcyBvdmVyYWxsCiAgQmlvbWFzcyAlIGNvbXBvc2l0aW9uIHN0YWNrZWQgYmFycwogIEJpb21hc3MgbGFyZ2UgKDUrbW0pIHZzIG1lZCAoMi01bW0pIHZzIHNtYWxsICgwLTJtbSkgYmV0d2VlbiBncm91cHMKCkRpdmVyc2l0eSBzdHVmZgogIFJhbmsgQWJ1bmRhbmNlICsgcXVhbnRpdGF0aXZlIGNvbXBhcmlzb25zIGZvciBlYWNoIHNpdGUKICBTaGFubm9uIERpdiBJbmRleCBmb3IgZWFjaCBzaXRlCiAgU3BlY2llcyBldmVuZXNzIGZvciBlYWNoIHNpdGUKCmBgYHtyfQojQWJ1bmRhbmNlIGFuZCBzcGVjaWVzIGNvbXAKZGVuc2l0aWVzc2l0ZXMgPC0gcmVhZC5jc3YoIn4vRGVza3RvcC9kZW5zaXR5c2l0ZXMuY3N2Iiwgcm93Lm5hbWVzID0gMSkKc3BlY2llc3BlcmNlbnQgPC0gcmVhZC5jc3YoIn4vRGVza3RvcC9zcGVjaWVzY29tcG9zaXRpb24uY3N2Iiwgcm93Lm5hbWVzID0gMSkKY29tcG9zaXRpb25ncm91cHMgPC0gcmVhZC5jc3YoIn4vRGVza3RvcC9jb21wb3NpdGlvbmdvcnVwcy5jc3YiLCByb3cubmFtZXMgPSAxKQoKCmBgYAoKCmBgYHtyfQojU2l6ZSBoaXN0b2dyYW1zCnNpemViaW5zIDwtIHJlYWQuY3N2KCJ+L0Rlc2t0b3Avc2l6ZXMuY3N2Iiwgcm93Lm5hbWVzID0gMSkKCgpgYGAKCgpgYGB7cn0KIyMjQmlvbWFzcwpiaW9tYXNzcGVyY2VudHRheGEgPC0gcmVhZC5jc3YoIn4vRGVza3RvcC9iaW9tYXNzLXBlcmNlbnQuY3N2Iiwgcm93Lm5hbWVzID0gMSkKYmlvbWFzc3ZhbHVlc2dyb3VwIDwtIHJlYWQuY3N2KCJ+L0Rlc2t0b3AvYmlvbWFzc3ZhbHVlcy5jc3YiLCByb3cubmFtZXMgPSAxKQpiaW9tYXNzcGVyY2VudGdyb3VwcyA8LSByZWFkLmNzdigifi9EZXNrdG9wL2Jpb21hc3NwZXJjZW50Z3JvdXBzLmNzdiIsIHJvdy5uYW1lcyA9IDEpCgojZDFkYXRhIGJlbG93CmQxY291bnRzIDwtIHJlYWQuY3N2KCJ+L0Rlc2t0b3AvZDFjb3VudHMuY3N2Iiwgcm93Lm5hbWVzID0gMSkKZDFkaXYgPC0gZGl2ZXJzaXR5KGQxY291bnRzKQpkMWV2ZW4gPC0gZDFkaXYvKGxvZygyMykpCgojZDJkYXRhYmVsb3cKZDJjb3VudHMgPC0gcmVhZC5jc3YoIn4vRGVza3RvcC9kMmNvdW50cy5jc3YiLCByb3cubmFtZXMgPSAxKQpkMmRpdiA8LSBkaXZlcnNpdHkoZDJjb3VudHMpCmQyZXZlbiA8LSBkMmRpdi8obG9nKDE5KSkKCiNuMWRhdGFiZWxvdwpuMWNvdW50cyA8LSByZWFkLmNzdigifi9EZXNrdG9wL24xY291bnRzLmNzdiIsIHJvdy5uYW1lcyA9IDEpCm4xZGl2IDwtIGRpdmVyc2l0eShuMWNvdW50cykKbjFldmVuIDwtIG4xZGl2Lyhsb2coMTgpKQoKI3NyZGF0YWJlbG93CnNyY291bnRzIDwtIHJlYWQuY3N2KCJ+L0Rlc2t0b3Avc3Jjb3VudHMuY3N2Iiwgcm93Lm5hbWVzID0gMSkKc3JkaXYgPC0gZGl2ZXJzaXR5KHNyY291bnRzKQpzcmV2ZW4gPC0gc3JkaXYvKGxvZygxNykpCgojbWFrZSBkYXRhZnJhbWUgYW5kIHJlbmFtZSBjb2x1bW5zCgphIDwtIGxpc3Qoc3JkaXYsIG4xZGl2LCBkMmRpdiwgZDFkaXYpCmIgPC0gbGlzdChzcmV2ZW4sIG4xZXZlbiwgZDJldmVuLCBkMWV2ZW4pCgpkZiA8LSB0aWJibGUoYSwgYikKY29sbmFtZXMxIDwtIGMoIlNoYW5ub24tV2VhdmVyIERpdmVyc2l0eSBJbmRleCIsICJQaWVsb3UncyBTcGVjaWVzIEV2ZW5uZXNzIikKcm93bmFtZXMxIDwtIGMoIlNSIiwgIk4xIiwgIkQyIiwgIkQxIikKY29sbmFtZXMoZGYpIDwtIGNvbG5hbWVzMQpyb3duYW1lcyhkZikgPC0gcm93bmFtZXMxCgoKCgpgYGAKCgpgYGB7cn0KI0RpdmVyc2l0eSBncmFwaHMKCgpgYGAKCgo=</div>
 
 
 
