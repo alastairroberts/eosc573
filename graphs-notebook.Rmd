@@ -10,6 +10,7 @@ library(ggplot2)
 library(purrr)
 library(RADanalysis)
 library(vegan)
+library(patchwork)
 ```
 
 (Methods) Table: Key features
@@ -39,6 +40,18 @@ Diversity stuff
 ```{r}
 #Abundance and species comp
 densitiessites <- read.csv("~/Desktop/densitysites.csv", row.names = 1)
+
+density_plot <- densitiessites%>%
+  ggplot(aes(x = rownames(densitiessites), y = Average.Density))+
+  geom_bar(stat = 'identity', colour = "steelblue", fill = "steelblue")+
+  labs(x = "Sites in Barkley Sound",
+       y = "Zooplankton Density (ind/m^3)",
+       title = "Zooplankton Abundance in Barkley Sound")+
+  theme(plot.title = element_text(hjust = 0.5))
+
+ggsave(here::here("density_plot.png"), height = 9, width = 12)
+  
+  
 speciespercent <- read.csv("~/Desktop/speciescomposition.csv", row.names = 1)
 compositiongroups <- read.csv("~/Desktop/compositiongorups.csv", row.names = 1)
 
@@ -48,8 +61,51 @@ compositiongroups <- read.csv("~/Desktop/compositiongorups.csv", row.names = 1)
 
 ```{r}
 #Size histograms
-sizebins <- read.csv("~/Desktop/sizes.csv", row.names = 1)
+sizebins <- read.csv("~/Desktop/sizes.csv")
 
+srsize_plot <- sizebins %>%
+  ggplot(aes(x = X , y = SR))+
+  geom_bar(stat = 'identity', position = 'dodge', colour = "steelblue", fill = "steelblue")+
+  labs(x = 'Body Length Size Classes',
+       y = "Proportion of Individuals (%)",
+       title = 'Site SR1 at Sarita River',
+       subtitle = '30m tow depth'
+       )+
+  theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+n1size_plot <- sizebins %>%
+  ggplot(aes(x = X , y = N1))+
+  geom_bar(stat = 'identity', position = 'dodge', colour = "steelblue", fill = "steelblue")+
+  labs(x = 'Body Length Size Classes',
+       y = "Proportion of Individuals (%)",
+       title = 'Site N1 in Trevor Channel',
+       subtitle = '30m tow depth'
+       )+
+  theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+d2size_plot <- sizebins %>%
+  ggplot(aes(x = X , y = D2))+
+  geom_bar(stat = 'identity', position = 'dodge', colour = "steelblue", fill = "steelblue")+
+  labs(x = 'Body Length Size Classes',
+       y = "Proportion of Individuals (%)",
+       title = 'Site D2 in Trevor Channel',
+       subtitle = '60m tow depth'
+       )+
+  theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+d1size_plot <- sizebins %>%
+  ggplot(aes(x = X , y = D1))+
+  geom_bar(stat = 'identity', position = 'dodge', colour = "steelblue", fill = "steelblue")+
+  labs(x = 'Body Length Size Classes',
+       y = "Proportion of Individuals (%)",
+       title = 'Site D1 in Trevor Channel',
+       subtitle = '120m tow depth'
+       )+
+  theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+plot_comp <- srsize_plot + n1size_plot + d2size_plot + d1size_plot
+plot_final <- plot_comp + plot_annotation(tag_levels = "A")
+ggsave(here::here("size_plots.png"), height = 9, width = 18) 
 
 ```
 
@@ -59,6 +115,14 @@ sizebins <- read.csv("~/Desktop/sizes.csv", row.names = 1)
 biomasspercenttaxa <- read.csv("~/Desktop/biomass-percent.csv", row.names = 1)
 biomassvaluesgroup <- read.csv("~/Desktop/biomassvalues.csv", row.names = 1)
 biomasspercentgroups <- read.csv("~/Desktop/biomasspercentgroups.csv", row.names = 1)
+
+
+
+```
+
+
+```{r}
+#Diversity data and graphs
 
 #d1data below
 d1counts <- read.csv("~/Desktop/d1counts.csv", row.names = 1)
@@ -91,16 +155,10 @@ rownames1 <- c("SR", "N1", "D2", "D1")
 colnames(df) <- colnames1
 rownames(df) <- rownames1
 
-
-
-
-```
-
-
-```{r}
-#Diversity graphs
-
-
+library(ggplot2)
+ggplot(df, aes(x = rownames(df), y = df$`Shannon-Weaver Diversity Index`)+
+  geom_bar(stat = 'identity')
+beez
 ```
 
 
