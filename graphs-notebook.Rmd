@@ -1,6 +1,6 @@
 ---
 title: "EOSC573 data analysis"
-output: html_notebook
+output: r_notebook
 ---
 
 
@@ -11,6 +11,7 @@ library(purrr)
 library(RADanalysis)
 library(vegan)
 library(patchwork)
+library(ggthemes)
 ```
 
 (Methods) Table: Key features
@@ -53,12 +54,57 @@ density_plot2
 ggsave(here::here("density_plot2.png"), height = 9, width = 12)
 
 
-# species & group comp
+# species comp
 speciespercent <- read.csv("~/Desktop/speciescomposition.csv", row.names = 1)
-compositiongroups <- read.csv("~/Desktop/compositiongorups.csv", row.names = 1)
 
 speciespercent2 <- tibble::rownames_to_column(speciespercent, "Species name")
-speciespercent2
+speciespercent2 <- speciespercent2 %>%
+  pivot_longer(!`Species name`, names_to = "Site", values_to = "Count")
+
+#Custom colour palette
+
+mycolours = c(brewer.pal(name="Set2", n=8), brewer.pal(name="Paired", n=12), brewer.pal(name="Set3", n=12))
+
+speciescomp_plot <- speciespercent2 %>%
+  ggplot(aes(fill = `Species name`, x = Site, y = Count)) + 
+    geom_bar(position="fill", stat="identity")+
+  labs(x = "Site",
+       y = "Proportion of Sample",
+       title = "Species Composition of Zooplankton in Barkley Sound")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #scale_fill_excel_new("Office Theme")+
+  #scale_fill_viridis(discrete = TRUE, option = "C")+
+  scale_x_discrete(limits=rev)+
+  scale_fill_manual(values = mycolours)
+
+speciescomp_plot
+
+ggsave(here::here("speciescomp_plot.png"), height = 9, width = 12)
+
+#species comp by group
+
+compositiongroups <- read.csv("~/Desktop/compositiongorups.csv", row.names = 1)
+
+compositiongroups2 <- tibble::rownames_to_column(compositiongroups, "Taxon")
+compositiongroups2$N1 <- as.double(compositiongroups2$N1)
+compositiongroups2 <- compositiongroups2 %>%
+  pivot_longer(!`Taxon`, names_to = "Site", values_to = "Count")
+
+
+groupcomp_plot <- compositiongroups2 %>%
+  ggplot(aes(fill = `Taxon`, x = Site, y = Count)) + 
+    geom_bar(position="fill", stat="identity")+
+  labs(x = "Site",
+       y = "Proportion of Sample",
+       title = "Taxon Composition of Zooplankton in Barkley Sound")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #scale_fill_excel_new("Office Theme")+
+  #scale_fill_viridis(discrete = TRUE, option = "C")+
+  scale_x_discrete(limits=rev)+
+  scale_fill_manual(values = mycolours)
+groupcomp_plot
+
+ggsave(here::here("groupcomp_plot.png"), height = 9, width = 12)
 
 
 ```
@@ -123,9 +169,56 @@ biomasspercentgroups <- read.csv("~/Desktop/biomasspercentgroups.csv", row.names
 
 #Biomass percent by taxa
 
+
+biomasspercentspecies <- tibble::rownames_to_column(biomasspercenttaxa, "Species")
+#compositiongroups2$N1 <- as.double(compositiongroups2$N1)
+biomasspercentspecies <- biomasspercentspecies %>%
+  pivot_longer(!`Species`, names_to = "Site", values_to = "Count")
+
+
+species_plot <- biomasspercentspecies %>%
+  ggplot(aes(fill = `Species`, x = Site, y = Count)) + 
+    geom_bar(position="fill", stat="identity")+
+  labs(x = "Site",
+       y = "Proportion of Sample",
+       fill = "Species name",
+       title = "Zooplankton Biomass in Barkley Sound")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #scale_fill_excel_new("Office Theme")+
+  #scale_fill_viridis(discrete = TRUE, option = "C")+
+  scale_x_discrete(limits=rev)+
+  scale_fill_manual(values = mycolours)
+species_plot
+
+ggsave(here::here("biomassspecies_plot.png"), height = 9, width = 12)
+
 #Biomass stacked bar group
 
+biomassvaluesgroup <- tibble::rownames_to_column(biomassvaluesgroup, "Taxon")
+biomassvaluesgroup <- biomassvaluesgroup %>%
+  pivot_longer(!`Taxon`, names_to = "Site", values_to = "Count")
+view(biomassvaluesgroup)
+
+
+biomassvalues_plot <- biomassvaluesgroup %>%
+  ggplot(aes(fill = `Taxon`, x = Site, y = Count)) + 
+    geom_bar(stat = "identity")+
+  labs(x = "Site",
+       y = "Biomass (mgC/m^3)",
+       fill = "Taxon name",
+       title = "Zooplankton Biomass in Barkley Sound")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #scale_fill_excel_new("Office Theme")+
+  #scale_fill_viridis(discrete = TRUE, option = "C")+
+  scale_x_discrete(limits=rev)+
+  scale_fill_manual(values = mycolours)
+biomassvalues_plot
+
+ggsave(here::here("biomassvalues_plot.png"), height = 9, width = 12)
+
+
 #Biomass percent comp group
+biomasspercentgroups
 
 
 ```
