@@ -23,37 +23,42 @@ Abundance graphs
 Relative composition stacked bar graphs
   Species
   Classes
-
-Size structure (Biovolume) => NBSS (normalised biomass size structure) as per paper: ___?
-  Biovolume/m^3 (um^3/m^3)
   
 Biomass graphs
   Biomass between sites overall
   Biomass % composition stacked bars
   Biomass large (5+mm) vs med (2-5mm) vs small (0-2mm) between groups
 
-Diversity stuff
-  Rank Abundance + quantitative comparisons for each site
+Diversity stuff (table)
   Shannon Div Index for each site
-  Species eveness for each site
+  Species evenness for each site
+
+Plus size histograms
 
 ```{r}
 #Abundance and species comp
 densitiessites <- read.csv("~/Desktop/densitysites.csv", row.names = 1)
+densitiessites2<- tibble::rownames_to_column(densitiessites, "Site")
 
-density_plot <- densitiessites%>%
-  ggplot(aes(x = rownames(densitiessites), y = Average.Density))+
+density_plot2 <- densitiessites2%>%
+  ggplot(aes(x = Site, y = Average.Density))+
   geom_bar(stat = 'identity', colour = "steelblue", fill = "steelblue")+
   labs(x = "Sites in Barkley Sound",
        y = "Zooplankton Density (ind/m^3)",
        title = "Zooplankton Abundance in Barkley Sound")+
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5))+
+  scale_x_discrete(limits=rev)
+density_plot2
 
-ggsave(here::here("density_plot.png"), height = 9, width = 12)
-  
-  
+ggsave(here::here("density_plot2.png"), height = 9, width = 12)
+
+
+# species & group comp
 speciespercent <- read.csv("~/Desktop/speciescomposition.csv", row.names = 1)
 compositiongroups <- read.csv("~/Desktop/compositiongorups.csv", row.names = 1)
+
+speciespercent2 <- tibble::rownames_to_column(speciespercent, "Species name")
+speciespercent2
 
 
 ```
@@ -116,13 +121,18 @@ biomasspercenttaxa <- read.csv("~/Desktop/biomass-percent.csv", row.names = 1)
 biomassvaluesgroup <- read.csv("~/Desktop/biomassvalues.csv", row.names = 1)
 biomasspercentgroups <- read.csv("~/Desktop/biomasspercentgroups.csv", row.names = 1)
 
+#Biomass percent by taxa
+
+#Biomass stacked bar group
+
+#Biomass percent comp group
 
 
 ```
 
 
 ```{r}
-#Diversity data and graphs
+#Diversity data to dataframe
 
 #d1data below
 d1counts <- read.csv("~/Desktop/d1counts.csv", row.names = 1)
@@ -155,10 +165,6 @@ rownames1 <- c("SR", "N1", "D2", "D1")
 colnames(df) <- colnames1
 rownames(df) <- rownames1
 
-library(ggplot2)
-ggplot(df, aes(x = rownames(df), y = df$`Shannon-Weaver Diversity Index`)+
-  geom_bar(stat = 'identity')
-beez
 ```
 
 
