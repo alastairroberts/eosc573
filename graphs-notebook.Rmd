@@ -218,7 +218,9 @@ ggsave(here::here("biomassvalues_plot.png"), height = 9, width = 12)
 
 
 #Biomass percent comp group
-biomasspercentgroups
+view(biomasspercentgroups)
+
+
 
 
 ```
