@@ -208,8 +208,6 @@ biomassvalues_plot <- biomassvaluesgroup %>%
        fill = "Taxon name",
        title = "Zooplankton Biomass in Barkley Sound")+
   theme(plot.title = element_text(hjust = 0.5))+
-  #scale_fill_excel_new("Office Theme")+
-  #scale_fill_viridis(discrete = TRUE, option = "C")+
   scale_x_discrete(limits=rev)+
   scale_fill_manual(values = mycolours)
 biomassvalues_plot
@@ -220,7 +218,24 @@ ggsave(here::here("biomassvalues_plot.png"), height = 9, width = 12)
 #Biomass percent comp group
 view(biomasspercentgroups)
 
+biomasspercentgroups <- tibble::rownames_to_column(biomasspercentgroups, "Taxon")
+biomasspercentgroups <- biomasspercentgroups %>%
+  pivot_longer(!`Taxon`, names_to = "Site", values_to = "Count")
 
+
+biomassgroups_plot <- biomasspercentgroups %>%
+  ggplot(aes(fill = `Taxon`, x = Site, y = Count)) + 
+    geom_bar(position="fill", stat="identity")+
+  labs(x = "Site",
+       y = "Proportion of Sample",
+       fill = "Taxon name",
+       title = "Zooplankton Biomass Composition in Barkley Sound")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  scale_x_discrete(limits=rev)+
+  scale_fill_manual(values = mycolours)
+biomassgroups_plot
+
+ggsave(here::here("biomassgroups_plot.png"), height = 9, width = 12)
 
 
 ```
