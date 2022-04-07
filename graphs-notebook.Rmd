@@ -49,6 +49,13 @@ density_plot2 <- densitiessites2%>%
        title = "Zooplankton Abundance in Barkley Sound")+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=rev)
+
+density_plot2 <- density_plot2 +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18))
+  #theme(legend.title = element_text(size = 18)) +
+  #theme(legend.text = element_text(size = 16))
 density_plot2
 
 ggsave(here::here("density_plot2.png"), height = 9, width = 12)
@@ -77,9 +84,15 @@ speciescomp_plot <- speciespercent2 %>%
   scale_x_discrete(limits=rev)+
   scale_fill_manual(values = mycolours)
 
-speciescomp_plot
+speciescomp_plot <- speciescomp_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16))
+view(speciescomp_plot)
 
-ggsave(here::here("speciescomp_plot.png"), height = 9, width = 12)
+ggsave(here::here("speciescomp_plot.png"), height = 9, width = 14)
 
 #species comp by group
 
@@ -102,6 +115,14 @@ groupcomp_plot <- compositiongroups2 %>%
   #scale_fill_viridis(discrete = TRUE, option = "C")+
   scale_x_discrete(limits=rev)+
   scale_fill_manual(values = mycolours)
+
+groupcomp_plot <- groupcomp_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16)) +
+  theme(plot.subtitle = element_text(size = 16))
 groupcomp_plot
 
 ggsave(here::here("groupcomp_plot.png"), height = 9, width = 12)
@@ -124,6 +145,15 @@ srsize_plot <- sizebins %>%
        )+
   theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 
+srsize_plot <- srsize_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16)) +
+  theme(plot.subtitle = element_text(size = 16))
+view(srsize_plot)
+
 n1size_plot <- sizebins %>%
   ggplot(aes(x = X , y = N1))+
   geom_bar(stat = 'identity', position = 'dodge', colour = "steelblue", fill = "steelblue")+
@@ -133,6 +163,15 @@ n1size_plot <- sizebins %>%
        subtitle = '30m tow depth'
        )+
   theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+n1size_plot <- n1size_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16)) +
+  theme(plot.subtitle = element_text(size = 16))
+
 
 d2size_plot <- sizebins %>%
   ggplot(aes(x = X , y = D2))+
@@ -144,6 +183,15 @@ d2size_plot <- sizebins %>%
        )+
   theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 
+d2size_plot <- d2size_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16)) +  
+  theme(plot.subtitle = element_text(size = 16))
+
+
 d1size_plot <- sizebins %>%
   ggplot(aes(x = X , y = D1))+
   geom_bar(stat = 'identity', position = 'dodge', colour = "steelblue", fill = "steelblue")+
@@ -154,18 +202,27 @@ d1size_plot <- sizebins %>%
        )+
   theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 
+d1size_plot <- d1size_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16)) +
+  theme(plot.subtitle = element_text(size = 16))
+
 plot_comp <- srsize_plot + n1size_plot + d2size_plot + d1size_plot
 plot_final <- plot_comp + plot_annotation(tag_levels = "A")
-ggsave(here::here("size_plots.png"), height = 9, width = 18) 
+
+ggsave(here::here("size_plots2.png"), height = 9, width = 18) 
 
 ```
 
 
 ```{r}
 ###Biomass
-biomasspercenttaxa <- read.csv("~/Desktop/biomass-percent.csv", row.names = 1)
-biomassvaluesgroup <- read.csv("~/Desktop/biomassvalues.csv", row.names = 1)
-biomasspercentgroups <- read.csv("~/Desktop/biomasspercentgroups.csv", row.names = 1)
+biomasspercenttaxa <- read.csv("~/Desktop/eosc573/biomass-percent.csv", row.names = 1)
+biomassvaluesgroup <- read.csv("~/Desktop/eosc573/biomassvalues.csv", row.names = 1)
+biomasspercentgroups <- read.csv("~/Desktop/eosc573/biomasspercentgroups.csv", row.names = 1)
 
 #Biomass percent by taxa
 
@@ -188,9 +245,16 @@ species_plot <- biomasspercentspecies %>%
   #scale_fill_viridis(discrete = TRUE, option = "C")+
   scale_x_discrete(limits=rev)+
   scale_fill_manual(values = mycolours)
-species_plot
 
-ggsave(here::here("biomassspecies_plot.png"), height = 9, width = 12)
+species_plot <- species_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16))
+view(species_plot)
+
+ggsave(here::here("biomassspecies_plot.png"), height = 9, width = 14)
 
 #Biomass stacked bar group
 
@@ -210,7 +274,15 @@ biomassvalues_plot <- biomassvaluesgroup %>%
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=rev)+
   scale_fill_manual(values = mycolours)
-biomassvalues_plot
+
+biomassvalues_plot <- biomassvalues_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16))
+
+view(biomassvalues_plot)
 
 ggsave(here::here("biomassvalues_plot.png"), height = 9, width = 12)
 
@@ -233,6 +305,14 @@ biomassgroups_plot <- biomasspercentgroups %>%
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=rev)+
   scale_fill_manual(values = mycolours)
+
+biomassgroups_plot <- biomassgroups_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16))
+
 biomassgroups_plot
 
 ggsave(here::here("biomassgroups_plot.png"), height = 9, width = 12)
@@ -276,5 +356,3 @@ colnames(df) <- colnames1
 rownames(df) <- rownames1
 
 ```
-
-
