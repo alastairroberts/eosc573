@@ -12,7 +12,14 @@ library(RADanalysis)
 library(vegan)
 library(patchwork)
 library(ggthemes)
+library(RColorBrewer)
+library(marmap)
 ```
+
+**UPDATED AS OF APR 23 (notes below)**
+- Changed colour palette and coerced graph fill using fct_inorder(), new plots have a "2" suffix.
+- Biomass contribution by size class
+- Bathymetry & map stuff
 
 (Methods) Table: Key features
 (Methods) Image: Sample sites highlighted on map
@@ -35,6 +42,10 @@ Diversity stuff (table)
   Species evenness for each site
 
 Plus size histograms
+
+Biomass contribution by size
+
+Bathymetry via marmap package
 
 ```{r}
 #Abundance and species comp
@@ -62,7 +73,7 @@ ggsave(here::here("density_plot2.png"), height = 9, width = 12)
 
 
 # species comp
-speciespercent <- read.csv("~/Desktop/speciescomposition.csv", row.names = 1)
+speciespercent <- read.csv("./data/speciescomposition2.csv", row.names = 1)
 
 speciespercent2 <- tibble::rownames_to_column(speciespercent, "Species name")
 speciespercent2 <- speciespercent2 %>%
@@ -70,13 +81,15 @@ speciespercent2 <- speciespercent2 %>%
 
 #Custom colour palette
 
-mycolours = c(brewer.pal(name="Set2", n=8), brewer.pal(name="Paired", n=12), brewer.pal(name="Set3", n=12))
+#mycolours = c(brewer.pal(name="YlOrRd", n=9), "#8C510A", "#993404", "#662506", "#252525", "#000000", "#1B9E77", "#7570B3", "#E7298A", "#1D91C0", "#7FBC41", "#4D9221", "#276419", "#E31A1C", "#FFFF99", "#FDBF6F", "#969696", "#1F78B4")
+mycolours = c(viridis(n = 14, option = "D"), viridis(n = 12, direction = 1, option = "A"))
 
 speciescomp_plot <- speciespercent2 %>%
-  ggplot(aes(fill = `Species name`, x = Site, y = Count)) + 
+  ggplot(aes(fill = fct_inorder(`Species name`), x = Site, y = Count)) + 
     geom_bar(position="fill", stat="identity")+
   labs(x = "Site",
        y = "Proportion of Sample",
+       fill = "Species Name",
        title = "Species Composition of Zooplankton in Barkley Sound")+
   theme(plot.title = element_text(hjust = 0.5))+
   #scale_fill_excel_new("Office Theme")+
@@ -90,9 +103,9 @@ speciescomp_plot <- speciescomp_plot +
   theme(axis.text = element_text(size = 18)) +
   theme(legend.title = element_text(size = 18)) +
   theme(legend.text = element_text(size = 16))
-view(speciescomp_plot)
+print(speciescomp_plot)
 
-ggsave(here::here("speciescomp_plot.png"), height = 9, width = 14)
+ggsave("speciescomp_plot2.png", height = 9, width = 14)
 
 #species comp by group
 
@@ -220,9 +233,9 @@ ggsave(here::here("size_plots2.png"), height = 9, width = 18)
 
 ```{r}
 ###Biomass
-biomasspercenttaxa <- read.csv("~/Desktop/eosc573/biomass-percent.csv", row.names = 1)
-biomassvaluesgroup <- read.csv("~/Desktop/eosc573/biomassvalues.csv", row.names = 1)
-biomasspercentgroups <- read.csv("~/Desktop/eosc573/biomasspercentgroups.csv", row.names = 1)
+biomasspercenttaxa <- read.csv("./data/biomass-percent2.csv", row.names = 1)
+biomassvaluesgroup <- read.csv("./data/biomassvalues.csv", row.names = 1)
+biomasspercentgroups <- read.csv("./data/biomasspercentgroups.csv", row.names = 1)
 
 #Biomass percent by taxa
 
@@ -234,7 +247,7 @@ biomasspercentspecies <- biomasspercentspecies %>%
 
 
 species_plot <- biomasspercentspecies %>%
-  ggplot(aes(fill = `Species`, x = Site, y = Count)) + 
+  ggplot(aes(fill = fct_inorder(`Species`), x = Site, y = Count)) + 
     geom_bar(position="fill", stat="identity")+
   labs(x = "Site",
        y = "Proportion of Sample",
@@ -252,9 +265,9 @@ species_plot <- species_plot +
   theme(axis.text = element_text(size = 18)) +
   theme(legend.title = element_text(size = 18)) +
   theme(legend.text = element_text(size = 16))
-view(species_plot)
+print(species_plot)
 
-ggsave(here::here("biomassspecies_plot.png"), height = 9, width = 14)
+ggsave(here::here"biomassspecies_plot2.png", height = 9, width = 14)
 
 #Biomass stacked bar group
 
