@@ -88,6 +88,7 @@ speciespercent2 <- speciespercent2 %>%
 
 #mycolours = c(brewer.pal(name="YlOrRd", n=9), "#8C510A", "#993404", "#662506", "#252525", "#000000", "#1B9E77", "#7570B3", "#E7298A", "#1D91C0", "#7FBC41", "#4D9221", "#276419", "#E31A1C", "#FFFF99", "#FDBF6F", "#969696", "#1F78B4")
 mycolours = c(viridis(n = 14, option = "D"), viridis(n = 12, direction = 1, option = "A"))
+mycolours2 = viridis(n = 14, option = "H", direction =-1)
 
 speciescomp_plot <- speciespercent2 %>%
   ggplot(aes(fill = fct_inorder(`Species name`), x = Site, y = Count)) + 
@@ -95,7 +96,8 @@ speciescomp_plot <- speciespercent2 %>%
   labs(x = "Site",
        y = "Proportion of Sample",
        fill = "Species Name",
-       title = "Species Composition of Zooplankton in Barkley Sound")+
+       #title = "Species Composition of Zooplankton in Barkley Sound"
+       )+
   theme(plot.title = element_text(hjust = 0.5))+
   #scale_fill_excel_new("Office Theme")+
   #scale_fill_viridis(discrete = TRUE, option = "C")+
@@ -143,7 +145,7 @@ groupcomp_plot <- groupcomp_plot +
   theme(plot.subtitle = element_text(size = 16))
 groupcomp_plot
 
-ggsave(here::here("groupcomp_plot.png"), height = 9, width = 12)
+ggsave("groupcomp_plot.png", height = 9, width = 12)
 
 
 ```
@@ -257,7 +259,8 @@ species_plot <- biomasspercentspecies %>%
   labs(x = "Site",
        y = "Proportion of Sample",
        fill = "Species name",
-       title = "Zooplankton Biomass in Barkley Sound")+
+       #title = "Zooplankton Biomass in Barkley Sound"
+       )+
   theme(plot.title = element_text(hjust = 0.5))+
   #scale_fill_excel_new("Office Theme")+
   #scale_fill_viridis(discrete = TRUE, option = "C")+
@@ -272,7 +275,7 @@ species_plot <- species_plot +
   theme(legend.text = element_text(size = 16))
 print(species_plot)
 
-ggsave(here::here("biomassspecies_plot2.png", height = 9, width = 14))
+ggsave("biomassspecies_plot2.png", height = 9, width = 14)
 
 #Biomass stacked bar group
 
@@ -288,10 +291,11 @@ biomassvalues_plot <- biomassvaluesgroup %>%
   labs(x = "Site",
        y = "Biomass (mgC/m^3)",
        fill = "Taxon name",
-       title = "Zooplankton Biomass in Barkley Sound")+
+       #title = "Zooplankton Biomass in Barkley Sound"
+       )+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=rev)+
-  scale_fill_manual(values = mycolours)
+  scale_fill_manual(values = mycolours2)
 
 biomassvalues_plot <- biomassvalues_plot +
   theme(axis.title = element_text(size = 18)) +
@@ -302,8 +306,7 @@ biomassvalues_plot <- biomassvalues_plot +
 
 print(biomassvalues_plot)
 
-ggsave(here::here("biomassvalues_plot2.png"), height = 9, width = 12)
-
+ggsave("biomassvalues_plot2.png", height = 9, width = 12)
 
 #Biomass percent comp group
 view(biomasspercentgroups)
@@ -333,7 +336,7 @@ biomassgroups_plot <- biomassgroups_plot +
 
 biomassgroups_plot
 
-ggsave(here::here("biomassgroups_plot.png"), height = 9, width = 12)
+ggsave(here::here("biomassgroups_plot3.png"), height = 9, width = 12)
 
 
 ```
