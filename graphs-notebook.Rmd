@@ -14,6 +14,10 @@ library(patchwork)
 library(ggthemes)
 library(RColorBrewer)
 library(marmap)
+library(rgdal)
+library(raster)
+library(ggOceanMapsData)
+library(ggOceanMaps)
 ```
 
 **UPDATED AS OF APR 23 (notes below)**
@@ -367,5 +371,165 @@ colnames1 <- c("Shannon-Weaver Diversity Index", "Pielou's Species Evenness")
 rownames1 <- c("SR", "N1", "D2", "D1")
 colnames(df) <- colnames1
 rownames(df) <- rownames1
+
+```
+
+```{r}
+##Biomass cont by size class
+
+sizebiomass <- read.csv("./data/sizebiomass.csv")
+
+srsize_plot <- sizebiomass %>%
+  ggplot(aes(x = fct_inorder(X) , y = SR))+
+  geom_bar(stat = 'identity', position = 'dodge', colour = "steelblue", fill = "steelblue")+
+  labs(x = 'Biomass Contribution by Size Class',
+       y = "Proportion of Individuals (%)",
+       title = 'Site SR1 at Sarita River',
+       subtitle = '30m tow depth'
+       )+
+    ylim(0,50)+
+  theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+srsize_plot <- srsize_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16)) +
+  theme(plot.subtitle = element_text(size = 16))
+print(srsize_plot)
+
+n1size_plot <- sizebiomass %>%
+  ggplot(aes(x = fct_inorder(X) , y = N1))+
+  geom_bar(stat = 'identity', position = 'dodge', colour = "steelblue", fill = "steelblue")+
+  labs(x = 'Biomass Contribution by Size Class',
+       y = "Proportion of Individuals (%)",
+       title = 'Site N1 in Trevor Channel',
+       subtitle = '30m tow depth'
+       )+
+    ylim(0,50)+
+  theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+n1size_plot <- n1size_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16)) +
+  theme(plot.subtitle = element_text(size = 16))
+
+
+d2size_plot <- sizebiomass %>%
+  ggplot(aes(x = fct_inorder(X) , y = D2))+
+  geom_bar(stat = 'identity', position = 'dodge', colour = "steelblue", fill = "steelblue")+
+  labs(x = 'Biomass Contribution by Size Class',
+       y = "Proportion of Individuals (%)",
+       title = 'Site D2 in Trevor Channel',
+       subtitle = '60m tow depth'
+       )+
+    ylim(0,50)+
+  theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+d2size_plot <- d2size_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16)) +  
+  theme(plot.subtitle = element_text(size = 16))
+
+
+d1size_plot <- sizebiomass %>%
+  ggplot(aes(x = fct_inorder(X) , y = D1))+
+  geom_bar(stat = 'identity', position = 'dodge', colour = "steelblue", fill = "steelblue")+
+  labs(x = 'Biomass Contribution by Size Class',
+       y = "Proportion of Individuals (%)",
+       title = 'Site D1 in Trevor Channel',
+       subtitle = '120m tow depth'
+       )+
+  theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+d1size_plot <- d1size_plot +
+  theme(axis.title = element_text(size = 18)) +
+  theme(plot.title = element_text(size = 20)) +
+  theme(axis.text = element_text(size = 18)) +
+  theme(legend.title = element_text(size = 18)) +
+  theme(legend.text = element_text(size = 16)) +
+  theme(plot.subtitle = element_text(size = 16))
+
+plot_comp <- srsize_plot + n1size_plot + d2size_plot + d1size_plot
+plot_final <- plot_comp + plot_annotation(tag_levels = "A")
+print(plot_final)
+
+ggsave("size_biomass.png", height = 9, width = 18) 
+
+
+```
+
+```{r}
+#Map & bathymetry stuff
+# get bathymetry data
+b = getNOAA.bathy(lon1 = -125.2, lon2 = -124.1167, lat1 = 48.95, lat2 = 48.70, 
+                  resolution = 1)
+## Querying NOAA database ...
+## This may take seconds to minutes, depending on grid size
+## Building bathy matrix ...
+
+# make a simple track line
+#lin = data.frame(
+  #lon = c(-65.17536, -65.37423, -65.64541, -66.06122, -66.15161),  
+  #lat = c(43.30837, 42.94679, 42.87448, 42.92871, 42.72985))
+
+# make a few points
+pts = data.frame(
+  lon = c(-125.2639, -125.2542, -125.4222, -125.0842),
+  lat = c(49.09167, 49.06833, 48.89778, 49.1375)
+)
+
+data("coastlineWorldFine")
+
+# convert bathymetry
+bathyLon = as.numeric(rownames(b))
+bathyLat = as.numeric(colnames(b))
+bathyZ = as.numeric(b)
+dim(bathyZ) = dim(b)
+
+# define plotting region
+mlon = mean(pts$lon)
+mlat = mean(pts$lat)
+span = 70
+
+# plot coastline (no projection)
+plot(coastlineWorldFine, clon = mlon, clat = mlat, span = span)
+
+# plot bathymetry
+contour(bathyLon,bathyLat,bathyZ,
+        levels = c(-50, -100, -150, -200, -250),
+        lwd = c(1, 1, 2, 2, 3),
+        lty = c(3, 1, 3, 1, 3),
+        drawlabels = F, add = TRUE, col = 'darkgray')
+
+# add depth legend
+legend("bottomright", seg.len = 3, cex = 0.8,
+       lwd = c(1, 1, 2, 2, 3),
+       lty = c(3, 1, 3, 1, 3),
+       legend = c("50", "100", "150", "200", "250"),
+       col = 'darkgray', title = "Depth [m]", bg= "white")
+
+# add map data
+points(pts, pch = 16, col = 'red')
+lines(lin, col = 'blue')
+polygon(ply, lty = 2)
+
+```
+
+```{r}
+#bathy cont
+dt <- data.frame(lat = c(48, 48, 50, 50), lon = c(-124, -125, -125, -124))
+pts = data.frame(lon = c(125.2639, 125.2542, 125.4222, 125.0842), lat = c(49.09167, 49.06833, 48.89778, 49.1375))
+basemap(data = dt, bathymetry = TRUE)+
+  geom_point(data = pts, aes(x = lon, y = lat))
+
+
 
 ```
