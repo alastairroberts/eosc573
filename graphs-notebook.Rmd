@@ -18,6 +18,7 @@ library(rgdal)
 library(raster)
 library(ggOceanMapsData)
 library(ggOceanMaps)
+library(viridis)
 ```
 
 **UPDATED AS OF APR 23 (notes below)**
@@ -271,14 +272,14 @@ species_plot <- species_plot +
   theme(legend.text = element_text(size = 16))
 print(species_plot)
 
-ggsave(here::here"biomassspecies_plot2.png", height = 9, width = 14)
+ggsave(here::here("biomassspecies_plot2.png", height = 9, width = 14))
 
 #Biomass stacked bar group
 
 biomassvaluesgroup <- tibble::rownames_to_column(biomassvaluesgroup, "Taxon")
 biomassvaluesgroup <- biomassvaluesgroup %>%
   pivot_longer(!`Taxon`, names_to = "Site", values_to = "Count")
-view(biomassvaluesgroup)
+#view(biomassvaluesgroup)
 
 
 biomassvalues_plot <- biomassvaluesgroup %>%
@@ -299,9 +300,9 @@ biomassvalues_plot <- biomassvalues_plot +
   theme(legend.title = element_text(size = 18)) +
   theme(legend.text = element_text(size = 16))
 
-view(biomassvalues_plot)
+print(biomassvalues_plot)
 
-ggsave(here::here("biomassvalues_plot.png"), height = 9, width = 12)
+ggsave(here::here("biomassvalues_plot2.png"), height = 9, width = 12)
 
 
 #Biomass percent comp group
